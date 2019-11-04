@@ -2,22 +2,29 @@
 
 int rev(int r){
 /*Dividir e usar o resto para separar os numeros e para cada valor da divisão associar um valor que irá multiplicar a divisão e somar para formar o novo inteiroo*/
-int resto=r, conta=1, nInt;
+int resto, conta=1, nInt=0, div=r;
 while(1){
-    resto= r%10;
-    conta++;
-    if(resto == 0) break;
+    resto= div % 10;
+    div = div / 10;
+    //printf("Conta: %d\n", conta);
+    if(div <= 0) break;
+    conta=conta*10;
+
 }
-resto = r;
+div = r;
 
 while(1){
-resto= resto % 10;
-nInt= resto * conta;
-conta--;
-if(resto == 0) break;
+ resto= div % 10;
+ div = div / 10;
+//printf("Nint: %d\n",nInt);
+nInt= nInt + (resto * conta);
+//printf("Resto: %d\n",resto);
+//printf("%d\n", nInt);
+conta=conta/10;
+if(div <= 0) break;
 }
 
-    return printf("%d",nInt);
+    return printf("%d\n",nInt);
 };
 
 
