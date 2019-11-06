@@ -26,7 +26,8 @@ float  mult(struct fraction *a, struct fraction *b){
 
 }
 
-void add(struct fraction a, struct fraction b){
+float add(struct fraction *a, struct fraction *b){
+    return (a->num/a->den)+(b->num/b->den);
 
 
 }
@@ -43,4 +44,5 @@ a.den=2;
 b.num=1;
 b.den=2;
 printf("%f\n",mult(&a,&b));
+printf("%f\n",add(&a,&b));
 }
