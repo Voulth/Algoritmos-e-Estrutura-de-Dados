@@ -14,6 +14,8 @@ uma fração e a reduz até que numerador e denominador não tenham divisores em
 funções, teste-as e tenha certeza de que elas funcionam corretamente. Existe alguma diferença
 signicativa em guardar-se o sinal separadamente ou isso não tem importância? */
 
+//http://clubes.obmep.org.br/blog/sala-de-estudos-algoritmo-de-euclides-para-determinacao-de-mdc/diagramas/ 
+
 
 
 struct fraction{
@@ -47,10 +49,8 @@ void reduce(struct fraction *a){
 int temp, orNUM, orDEN;
 orNUM = a->num;
 orDEN = a->den;
-printf("Num: %d e Den: %d\n",orNUM,orDEN);
 while(a->num != 0){
     temp = a->den;
-    printf("%d\n",temp);
     a->den = a->num;
     a->num = temp % a->num;
     printf("Num: %d\n",a->num);
@@ -70,6 +70,13 @@ b.den=40;
 printf("%f\n",mult(&a,&b));
 printf("%f\n",add(&a,&b));
 
-reduce(&a);
-printf("Num: %d Den: %d n",a.num,a.den);
+//reduce(&a);
+//Versão correta do Algoritmo de Euclides que não possui erro 
+int tmp, A=23732, B = 180;
+while(B !=0){
+tmp = A;
+A = B;
+B = tmp % B;}
+printf("%d\n",B);
+printf("Num: %d Den: %d \n",a.num,a.den);
 }
