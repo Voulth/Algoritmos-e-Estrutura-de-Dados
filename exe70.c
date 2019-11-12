@@ -47,10 +47,13 @@ void reduce(struct fraction *a){
 int temp, orNUM, orDEN;
 orNUM = a->num;
 orDEN = a->den;
+printf("Num: %d e Den: %d\n",orNUM,orDEN);
 while(a->num != 0){
     temp = a->den;
+    printf("%d\n",temp);
     a->den = a->num;
     a->num = temp % a->num;
+    printf("Num: %d\n",a->num);
 }
 int div = a->num;
 
@@ -60,10 +63,10 @@ a->den = orDEN / div;
 
 int main(void){
 struct fraction a, b;
-a.num=1;
-a.den=2;
-b.num=1;
-b.den=2;
+a.num=40;
+a.den=15;
+b.num=15;
+b.den=40;
 printf("%f\n",mult(&a,&b));
 printf("%f\n",add(&a,&b));
 
