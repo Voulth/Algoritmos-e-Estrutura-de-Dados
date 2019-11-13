@@ -44,42 +44,36 @@ float add(struct fraction *a, struct fraction *b){
     return (A1/A)+(B1/B);
 }
 
+
 void reduce(struct fraction *a){
 //Fazer MDC
 int temp, orNUM, orDEN;
 orNUM = a->num;
 orDEN = a->den;
-while(a->num != 0){
-    temp = a->den;
-    a->den = a->num;
-    a->num = temp % a->num;
-    if(a->num)
-    printf("Num: %d\n",a->den);
+while(a->den != 0){
+    temp = a->num;
+    a->num = a->den;
+    a->den = temp % a->den;
+    
+    
 }
-int div = a->den;
+int div = a->num;
 
 a->num = orNUM / div;
 a->den = orDEN / div;
+
 }
 
 int main(void){
 struct fraction a, b;
-a.num=40;
-a.den=15;
+a.num=1320;
+a.den=35;
 b.num=15;
 b.den=40;
 printf("%f\n",mult(&a,&b));
 printf("%f\n",add(&a,&b));
 
 reduce(&a);
-//Versão correta do Algoritmo de Euclides que não possui erro 
-int tmp, A=2382, B = 180;
-while(B !=0){
-tmp = A;
-A = B;
-B = tmp % B;}
 
-
-printf("%d\n",A);
 printf("Num: %d Den: %d \n",a.num,a.den);
 }
