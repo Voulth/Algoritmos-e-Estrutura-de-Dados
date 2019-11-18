@@ -26,18 +26,19 @@ struct chamada //Uma chamada ira ter duração de quanto tempo durou, que horas 
 void imprimedados(struct chamada *Chamad){ // Cria uma função para imprimir os dados e recebe um ponteiro para ela, assim ela pode trabalhar com valores de outros lugares 
 // %s Imprime uma serie de characters
 printf("Usuario: %s\n",Chamad->usuario);//Imprime pelo ponteiro o que esta salvo em usuario 
-printf("Ligacao Numero: %d\n",Chamad->NumLigacao);
-printf("Hora: %d:%d\n",Chamad->H.hora,Chamad->H.minuto);
-printf("Duracao: %d:%d:%d \n",Chamad->D.horas,Chamad->D.minutos,Chamad->D.segundos);
+printf("Ligacao Numero: %d\n",Chamad->NumLigacao);//Imprime pelo ponteiro o que esta salvo em NumLigacao
+printf("Hora: %d:%d\n",Chamad->H.hora,Chamad->H.minuto);//Imprime pelo ponteiro o que esta salvo em  H.hora e H.minuto
+printf("Duracao: %d:%d:%d \n",Chamad->D.horas,Chamad->D.minutos,Chamad->D.segundos);//Imprime pelo ponteiro o que esta salvo em D.horas D.minutos D.Segundos
 
 }
 
 
 void recebedados(struct chamada *Chamad){
-scanf("%s",Chamad->usuario);
-scanf(" %d",&Chamad->NumLigacao);
-scanf("%d %d",&Chamad->H.hora,&Chamad->H.minuto);
-scanf("%d %d %d",&Chamad->D.horas,&Chamad->D.minutos,&Chamad->D.segundos);
+scanf("%s",Chamad->usuario);// Salva no usuario por ponteiros o que receber
+scanf(" %d",&Chamad->NumLigacao);//Salva no NumLigacao por ponteiros o que receber
+scanf("%d %d",&Chamad->H.hora,&Chamad->H.minuto);//Salva no h.hora e h.minuto por ponteiros o que receber
+scanf("%d %d %d",&Chamad->D.horas,&Chamad->D.minutos,&Chamad->D.segundos);//Salva no d.horas, d.minutos e d.segundos por ponteiros o que receber
+//Lembrar que cada array é salvo em locais diferentes da memoria 
 
 
 
