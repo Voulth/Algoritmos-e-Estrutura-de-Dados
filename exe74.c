@@ -55,13 +55,13 @@ int TerrenoQuadeRet(struct terreno *t){//Função para ver se um Terreno é quad
    return 0;
 }
 
-void VetTe(int tam){//Função que faz as operações que quero com o Vetor
-struct terreno t[tam];
+void VetTe(int *tam){//Função que faz as operações que quero com o Vetor
+struct terreno t[*tam];
 
-for(int i=0;i<=tam;i++){
+for(int i=0;i<=*tam;i++){
     pegaTerreno(&t[i]);
     }
-for(int j=0;j<=tam;j++){
+for(int j=0;j<=*tam;j++){
     TerrenoQuadeRet(&t[j]);
     }
 
@@ -73,9 +73,9 @@ printf("Terreno %d Base: %d Altura: %d Maior Perimetro: %d\n",identificador,bas,
 
 void main()
 {
-int tamanho;
+int *tamanho;
 printf("Insira o Tamanho de quantos terrenos tem de ter no vetor \n");
-scanf("%d",&tamanho);
+scanf("%d",tamanho);
 
 VetTe(tamanho);
 /*for(int j=0;j<=4;j++){
