@@ -33,7 +33,7 @@ scanf("%d %d %d %d",&t->altura,&t->base, &t->angulo, &t->IDT);
 
 int TerrenoQuadeRet(struct terreno *t){//Função para ver se um Terreno é quadrado ou retangulo
     if(t->altura == t->base && t->angulo == 90){//Testa se é um quadrado
-         printf("O Terrono  de numero %d é quadrado\n",t->IDT);// Printa o identificador do terrno
+         printf("O Terreno  de numero %d é quadrado\n",t->IDT);// Printa o identificador do terrno
          if(perimetro(t)==1){// Se já disse que a função iria receber um ponteiro eu não preciso dizer que ela é um ponteiro de novo 
          //Associa os valores do meu terreno atual para as variaveis globais para serem realizados os testes 
              bas = t->base;
@@ -43,7 +43,7 @@ int TerrenoQuadeRet(struct terreno *t){//Função para ver se um Terreno é quad
          return 2;//Isso é usado para formar o vetor de lista dos terrenos quadrados 
          }
     if(t->altura != t->base && t->angulo == 90){
-         printf("O Terrono  de numero %d é retangulo\n",t->IDT);
+         printf("O Terreno  de numero %d é retangulo\n",t->IDT);
          if(perimetro(t)==1){// Se já disse que a função iria receber um ponteiro eu não preciso dizer que ela é um ponteiro de novo 
          //Associa os valores do meu terreno atual para as variaveis globais para serem realizados os testes
              bas = t->base;
@@ -55,29 +55,35 @@ int TerrenoQuadeRet(struct terreno *t){//Função para ver se um Terreno é quad
    return 0;
 }
 
-void VetTe(int *tam){//Função que faz as operações que quero com o Vetor
-struct terreno t[*tam];
+struct terreno VetTe(int tam){//Função que faz as operações que quero com o Vetor
+struct terreno t[tam];
 
-for(int i=0;i<=*tam;i++){
+for(int i=0;i<tam;i++){
     pegaTerreno(&t[i]);
     }
-for(int j=0;j<=*tam;j++){
+for(int j=0;j<tam;j++){
     TerrenoQuadeRet(&t[j]);
     }
 
 printf("Terreno %d Base: %d Altura: %d Maior Perimetro: %d\n",identificador,bas,alt,peri);
 
+return t[tam];
 }
 
 
 
 void main()
 {
-int *tamanho;
+int tamanho;
+struct terreno t;//Usar malloc para criar um array malevel para os valores que entrarem
 printf("Insira o Tamanho de quantos terrenos tem de ter no vetor \n");
-scanf("%d",tamanho);
+scanf("%d",&tamanho);
 
-VetTe(tamanho);
+//VetTe(tamanho);
+
+t=VetTe(tamanho);
+
+
 /*for(int j=0;j<=4;j++){
     TerrenoQuadeRet(&t[j]); 
     //if(TerrenoQuadeRet(&t[j])==2) quad++;
