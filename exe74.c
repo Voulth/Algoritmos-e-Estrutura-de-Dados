@@ -2,9 +2,9 @@
 escolher como representar o terreno, declare um vetor de 100 terrenos e apresente algoritmos
 para:
 (a) Listar os terrenos que são quadrados. OK
-(b) Encontrar o terreno de maior perímetro.
-(c) Encontrar o terreno que mais se assemelha a um quadrado. +- Pronto
-(d) Encontrar o terreno que menos se assemelha a um quadrado.
+(b) Encontrar o terreno de maior perímetro. OK
+(c) Encontrar o terreno que mais se assemelha a um quadrado. Ok
+(d) Encontrar o terreno que menos se assemelha a um quadrado. Ok 
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,78 +33,57 @@ scanf("%d %d %d %d",&t->altura,&t->base, &t->angulo, &t->IDT);
 
 int TerrenoQuadeRet(struct terreno *t){//Função para ver se um Terreno é quadrado ou retangulo
     if(t->altura == t->base && t->angulo == 90){//Testa se é um quadrado
-         printf("O Terreno  de numero %d é quadrado\n",t->IDT);// Printa o identificador do terrno
+         printf("O Terreno  de numero %d e quadrado\n",t->IDT);// Printa o identificador do terrno
+         //Erro perimetro 
          if(perimetro(t)==1){// Se já disse que a função iria receber um ponteiro eu não preciso dizer que ela é um ponteiro de novo 
          //Associa os valores do meu terreno atual para as variaveis globais para serem realizados os testes 
+            printf("Entrei\n");
              bas = t->base;
              alt = t->altura;
              identificador = t->IDT;
             }
-         return 2;//Isso é usado para formar o vetor de lista dos terrenos quadrados 
+         //return 2;//Isso é usado para formar o vetor de lista dos terrenos quadrados 
          }
     if(t->altura != t->base && t->angulo == 90){
-         printf("O Terreno  de numero %d é retangulo\n",t->IDT);
+         printf("O Terreno  de numero %d e retangulo\n",t->IDT);
          if(perimetro(t)==1){// Se já disse que a função iria receber um ponteiro eu não preciso dizer que ela é um ponteiro de novo 
          //Associa os valores do meu terreno atual para as variaveis globais para serem realizados os testes
              bas = t->base;
              alt = t->altura;
              identificador = t->IDT;
             }
-         return 3;//Isso é usado para formar o vetor de lista dos terrenos retangulares
+         //return 3;//Isso é usado para formar o vetor de lista dos terrenos retangulares
          }
-   return 0;
+   //return 0;
 }
 
-struct terreno VetTe(int tam){//Função que faz as operações que quero com o Vetor
-struct terreno t[tam];
+//void maisQ(){
+ //Função que ira receber um vetor struct de quadrados e ver quais mais se assemelham a um e menos se assemelham a um
 
-for(int i=0;i<tam;i++){
-    pegaTerreno(&t[i]);
-    }
-for(int j=0;j<tam;j++){
-    TerrenoQuadeRet(&t[j]);
-    }
-
-printf("Terreno %d Base: %d Altura: %d Maior Perimetro: %d\n",identificador,bas,alt,peri);
-
-return t[tam];
-}
-
+//}
 
 
 void main()
 {
 int tamanho;
-struct terreno t;//Usar malloc para criar um array malevel para os valores que entrarem
 printf("Insira o Tamanho de quantos terrenos tem de ter no vetor \n");
 scanf("%d",&tamanho);
-
-//VetTe(tamanho);
-
-t=VetTe(tamanho);
+struct terreno t[3];
 
 
-/*for(int j=0;j<=4;j++){
-    TerrenoQuadeRet(&t[j]); 
-    //if(TerrenoQuadeRet(&t[j])==2) quad++;
-    //if(TerrenoQuadeRet(&t[j])==3) ret++;
+for(int i=0;i<2;i++){
+    pegaTerreno(&t[i]);
+    }
+for(int j=0;j<2;j++){
+    printf("Começei o for\n");
+    TerrenoQuadeRet(&t[j]);
+    
+    printf("Acabei o for\n");
     }
 
-
-int *x, *y;
-x = (int*)malloc(quad * sizeof(int));
-y = (int*)malloc(ret * sizeof(int));
-struct terreno VeTQ[*x], VetR[*y];    
+printf("Terreno %d Base: %d Altura: %d Maior Perimetro: %d\n",identificador,bas,alt,peri);
 
 
-for(int j=0;j<=4;j++){
-    TerrenoQuadeRet(&t[j]); 
-    if(TerrenoQuadeRet(&t[j])==2) VeTQ[j];
-    if(TerrenoQuadeRet(&t[j])==3) ret++;
-    }
 
-
-printf("%d",VeTQ[0].);
-printf("Terreno %d Base: %d Altura: %d Maior Perimetro: %d\n",identificador,bas,alt,peri);*/
 
 }
