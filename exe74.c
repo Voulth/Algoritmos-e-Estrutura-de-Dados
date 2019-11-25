@@ -8,10 +8,12 @@ para:
 */
 #include <stdio.h>
 #include <stdlib.h>
+//Variaveis não locais:
+int peri=0, bas=0, alt=0, identificador=0;//Para trabalhar com o calculo do Perimetro
+int quad=0, retan=0;//Para definir o tamamanho do malloc, são usadas na função TerrenoQuadRet
+int menQ=0, maiQ=1000000,idMa,idMe;//Usadas para calcular os quadrados que mais se aproximam e menos se aproximam dos ideais
 
-int peri=0, bas=0, alt=0, identificador=0;//Variaveis não locais, para trabalhar com o calculo do Perimetro
-int quad=0, retan=0;
-int menQ=0, maiQ=1000000,idMa,idMe;
+//Cria a struct Terreno 
 struct terreno{//Terreno tem base e altura e angulos internos
 int base, altura, angulo, IDT;//Caracteristicas do Terreno + o seu numero identificador 
 
@@ -61,7 +63,7 @@ int TerrenoQuadeRet(struct terreno *t){//Função para ver se um Terreno é quad
    //return 0;
 }
 
-int Ret_Quad(struct terreno t){
+int Ret_Quad(struct terreno t){//Faz um teste para ver se é quadrado ou retangulo e informa isso pela função 
 if(t.altura == t.base && t.angulo == 90){
     return 1;
     }
@@ -72,21 +74,21 @@ if(t.altura == t.base && t.angulo == 90){
 
 void maisQ(struct terreno *t){
  //Função que ira receber um vetor struct de quadrados e ver quais mais se assemelham a um e menos se assemelham a um
-int dif=0;
+int dif=0;//Seta a diferença para 0
 dif=t->base-t->altura;
 //Checo para ver se se aproxima de um quadrado ideal 1x1
-if(dif==0){
+if(dif==0){// Se a diferença for 0
     
-    if((t->base-1)<=maiQ){
-        maiQ=t->base-1;
-        idMa=t->IDT;
+    if((t->base-1)<=maiQ){//Se a distancia do quadrado ideal for baixa, faz isso
+        maiQ=(t->base-1);
+        idMa=t->IDT;//associa o id do quadrado
 
     }
 
-    if((t->base-1)>=menQ){
+    if((t->base-1)>=menQ){//Se a distancia do quadrado ideal for grande, faz isso
         
-        menQ=t->base-1;
-        idMa=t->IDT;
+        menQ=(t->base-1);
+        idMe=t->IDT;//associa o id do quadrado 
 
     }
 }
@@ -101,31 +103,31 @@ void main()
 int tamanho;
 printf("Insira o Tamanho de quantos terrenos tem de ter no vetor \n");
 scanf("%d",&tamanho);
-struct terreno t[tamanho];
+struct terreno t[tamanho];//Cria um vetor de struct do tamanho que eu inserir
 
 
-for(int i=0;i<tamanho;i++){
-    pegaTerreno(&t[i]);
+for(int i=0;i<tamanho;i++){//Enquanto não completar o tamanho faz a função pegaTerreno
+    pegaTerreno(&t[i]);//Recebe o endereço da struct
     }
 for(int j=0;j<tamanho;j++){
     
-    TerrenoQuadeRet(&t[j]);
+    TerrenoQuadeRet(&t[j]);//Faz a função 
     
     
     }
 
-struct terreno *q = malloc(quad*sizeof(q));
+struct terreno *q = malloc(quad*sizeof(q));//Cria um vetor dinamico de struct usando malloc, utilizando quantas vezes quadrado apareceu e multiplicando por sizeof da struct q para definir o tamanho da memoria alocada para definir o tamanho do vetor
 
-int NQ=0;
+int NQ=0;//Cria uma variavel de soma
 for (int k=0;k<tamanho;k++){
-    if(Ret_Quad(t[k])==1){
+    if(Ret_Quad(t[k])==1){//Se retornar 1, associa o vetor t a q, caso houvesse um valor que não retorne 1, NQ ira ter um valor que ira diminuir a posição atual do vetor para o valor que era pra ser, assim evita de estourar o vetor 
         q[k-NQ]=t[k];
-        printf("KQ:%d\n",t[k].IDT);
+        //printf("KQ:%d\n",t[k].IDT);
     
-        printf("Valor de Q: %d\n",q[k].IDT);
+        //printf("Valor de Q: %d\n",q[k].IDT);
     }
     if(Ret_Quad(t[k])==0){
-        NQ++;
+        NQ++;//Soma NQ quando não for quadrado 
     }
     
 }
@@ -133,20 +135,20 @@ for (int k=0;k<tamanho;k++){
 
 for(int l=0;l<quad;l++){
 
-    printf("Q:%d\n",q[l].IDT);
+    printf("Q:%d\n",q[l].IDT);//Imprime os terrenos quadrados
     
 }
 
 for(int l=0;l<quad;l++){
 
-    maisQ(&q[l]);
+    maisQ(&q[l]);//Ve quem mais e menos se aproxima de um quadrado ideal 1x1
     
 }
 
 
 
-printf("Terreno %d Base: %d Altura: %d Maior Perimetro: %d\n",identificador,bas,alt,peri);
-printf("Mais Quadrado: %d Menos Quadrado: %d",idMa,idMe);
+printf("Terreno %d Base: %d Altura: %d Maior Perimetro: %d\n",identificador,bas,alt,peri);//Imprime o terreno de maior perimetro tanto retangulos quanto quadrados
+printf("Mais Quadrado: %d Menos Quadrado: %d\n",idMa,idMe);//Imprime os quadrados que mais se aproximam e menos se aproximam de um quadrado ideal 
 
 free(q);
 }
